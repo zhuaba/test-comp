@@ -1,0 +1,183 @@
+.v-drawer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  user-select: none;
+  touch-action: none;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: $--z-index-drawer;
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transform: translateY(0);
+    pointer-events: auto;
+    box-sizing: content-box;
+    z-index: $--z-index-overlay;
+    @include nightMode('background', #fff);
+  }
+
+  &__header {
+    flex-shrink: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    @include nightMode('color', $--color-text);
+    @include nightMode('background', #fff);
+
+    &.has-header {
+      position: relative;
+      height: 44px;
+      font-size: 14px;
+      padding: 0 12px;
+      font-weight: 500;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        transform: scaleY(0.5);
+        @include nightMode('background', $--color-gray-line);
+      }
+    }
+  }
+
+  &__footer {
+    flex-shrink: 0;
+    width: 100%;
+  }
+
+  &__body {
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    background-color: transparent;
+  }
+
+  &__line {
+    height: 8px !important;
+    @include nightMode('background', #f8f8f8);
+  }
+
+  &__item.strict,
+  &__cancel {
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    padding: 0 10px;
+    @extend %active-color;
+    @include nightMode('color', #323233);
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 1px;
+      transform: scaleY(0.5);
+      @include nightMode('background', #ebedf0);
+    }
+  }
+
+  &__cancel {
+    text-align: center;
+  }
+
+  &--bottom {
+    @include m-root() {
+      &--transition-enter,
+      &--transition-leave-to {
+        transform: translateY(100%);
+      }
+    }
+  }
+
+  /*
+  &--offset {
+    @include m-root(true) {
+      &--bottom {
+        @include m-root() {
+          &__wrap {
+            padding-bottom: constant(safe-area-inset-bottom);
+            padding-bottom: env(safe-area-inset-bottom);
+          }
+        }
+      }
+
+      &--top {
+        @include m-root() {
+          &__wrap {
+            padding-top: constant(safe-area-inset-top);
+            padding-top: env(safe-area-inset-top);
+          }
+        }
+      }
+
+      &--left {
+        @include m-root() {
+          &__wrap {
+            padding-left: constant(safe-area-inset-left);
+            padding-left: env(safe-area-inset-left);
+          }
+        }
+      }
+
+      &--right {
+        @include m-root() {
+          &__wrap {
+            padding-right: constant(safe-area-inset-right);
+            padding-right: env(safe-area-inset-right);
+          }
+        }
+      }
+    }
+  }
+  */
+
+  &--top {
+    @include m-root() {
+      &--transition-enter,
+      &--transition-leave-to {
+        transform: translateY(-100%);
+      }
+    }
+  }
+
+  &--left {
+    @include m-root() {
+      &--transition-enter,
+      &--transition-leave-to {
+        transform: translateX(-100%);
+      }
+    }
+  }
+
+  &--right {
+    @include m-root() {
+      &--transition-enter,
+      &--transition-leave-to {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  &--transition-enter-active,
+  &--transition-leave-active {
+    transition: transform 0.4s cubic-bezier(0.36, 0.66, 0.04, 1);
+    will-change: transform;
+  }
+}

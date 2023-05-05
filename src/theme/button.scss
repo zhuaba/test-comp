@@ -1,0 +1,247 @@
+@mixin button-loading-style($loading-color, $background-color) {
+  background: linear-gradient(to right, $loading-color 20%, rgba(255, 255, 255, 0) 70%);
+
+  &:before {
+    background-color: $loading-color;
+  }
+
+  &:after {
+    background-color: $background-color;
+  }
+
+  @include night() {
+    background: linear-gradient(to right, $loading-color 20%, rgba(255, 255, 255, 0) 70%);
+
+    &:before {
+      background-color: $loading-color;
+    }
+
+    &:after {
+      background-color: calculate($background-color);
+    }
+  }
+}
+
+@mixin button-theme-style(
+  $background-color,
+  $text-color,
+  $plain-text-color,
+  $plain-border-color,
+  $loading-core-color
+) {
+  background-color: $background-color;
+  border-color: $background-color;
+  @include dark-elem(color, $text-color);
+
+  .loading {
+    @include button-loading-style($text-color, $background-color);
+  }
+
+  @include night() {
+    background-color: calculate($background-color);
+    border-color: calculate($background-color);
+  }
+
+  @include m-root(true) {
+    @include when(plain) {
+      background-color: transparent;
+      border-color: $plain-border-color;
+      color: $plain-text-color;
+
+      @include night() {
+        background-color: transparent;
+        border-color: calculate($plain-border-color);
+        color: calculate($plain-text-color);
+      }
+    }
+
+    @include when(text) {
+      background-color: transparent;
+      border-color: transparent;
+      color: $plain-text-color;
+
+      @include night() {
+        background-color: transparent;
+        border-color: transparent;
+        color: calculate($plain-text-color);
+      }
+    }
+
+    @include when(loading) {
+      color: transparent !important;
+
+      @include m-root(true) {
+        @include when(plain) {
+          .loading {
+            @include button-loading-style($background-color, $loading-core-color);
+          }
+        }
+
+        @include when(text) {
+          .loading {
+            @include button-loading-style($background-color, $loading-core-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin button-size-style($padding-vertical, $padding-horizontal, $font-size, $height) {
+  height: $height;
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+
+  .loading {
+    width: $font-size;
+    height: $font-size;
+    margin-left: -$font-size / 2;
+    margin-top: -$font-size / 2;
+  }
+
+  @include m-root(true) {
+    @include when(round) {
+      border-radius: $height;
+    }
+  }
+}
+
+.v-btn {
+  @extend %form-item-reset;
+  position: relative;
+  box-sizing: border-box;
+  user-select: none;
+  margin: 0;
+  cursor: default;
+  border-radius: 4px;
+  border: 1px solid;
+  text-align: center;
+  white-space: nowrap;
+
+  &:not(:disabled) {
+    &:active {
+      opacity: 0.8;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.4;
+  }
+
+  .loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+    border-radius: 50%;
+    animation: rolling 1.4s infinite linear;
+    will-change: transform;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 50%;
+      border-radius: 100% 0 0 0;
+      transform: rotate(45deg);
+      transform-origin: right bottom;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 75%;
+      height: 75%;
+      border-radius: 50%;
+      margin: auto;
+    }
+  }
+
+  @include when(primary) {
+    @include button-theme-style(
+      $--button-primary-background-color,
+      $--button-primary-text-color,
+      $--button-primary-plain-text-color,
+      $--button-primary-plain-border-color,
+      $--button-primary-text-color
+    );
+  }
+
+  @include when(warning) {
+    @include button-theme-style(
+      $--button-warning-background-color,
+      $--button-warning-text-color,
+      $--button-warning-plain-text-color,
+      $--button-warning-plain-border-color,
+      $--button-warning-text-color
+    );
+  }
+
+  @include when(danger) {
+    @include button-theme-style(
+      $--button-danger-background-color,
+      $--button-danger-text-color,
+      $--button-danger-plain-text-color,
+      $--button-danger-plain-border-color,
+      $--button-danger-text-color
+    );
+  }
+
+  @include when(success) {
+    @include button-theme-style(
+      $--button-success-background-color,
+      $--button-success-text-color,
+      $--button-success-plain-text-color,
+      $--button-success-plain-border-color,
+      $--button-success-text-color
+    );
+  }
+
+  @include when(info) {
+    @include button-theme-style(
+      $--button-info-background-color,
+      $--button-info-text-color,
+      $--button-info-plain-text-color,
+      $--button-info-plain-border-color,
+      #fff
+    );
+  }
+
+  @include when(small) {
+    @include button-size-style(
+        $--button-small-padding-vertical,
+        $--button-small-padding-horizontal,
+        $--button-small-font-size,
+        $--button-small-height
+    );
+  }
+
+  @include when(medium) {
+    @include button-size-style(
+        $--button-medium-padding-vertical,
+        $--button-medium-padding-horizontal,
+        $--button-medium-font-size,
+        $--button-medium-height
+    );
+  }
+
+  @include when(large) {
+    @include button-size-style(
+        $--button-large-padding-vertical,
+        $--button-large-padding-horizontal,
+        $--button-large-font-size,
+        $--button-large-height
+    );
+  }
+
+  @include when(block) {
+    display: block;
+    width: 100%;
+  }
+}

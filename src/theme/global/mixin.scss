@@ -1,0 +1,173 @@
+@import "~@bilibili/h5-theme-mixin/dark-mixins.scss";
+
+%form-item-reset {
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+%word-break {
+  word-break: break-word !important;
+  word-break: break-all;
+}
+
+%oneline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%active-color {
+  &:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content
+  }
+
+  @-webkit-keyframes #{$name} {
+    @content
+  }
+
+  @-moz-keyframes #{$name} {
+    @content
+  }
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content
+  }
+
+  &::-moz-placeholder {
+    @content
+  }
+
+  &:-ms-input-placeholder {
+    @content
+  }
+}
+
+@mixin iPhoneX() {
+  /* iphone x / xs / 11 pro*/
+  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    @content;
+  }
+  /* iphone xr / 11 */
+  @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+    @content;
+  }
+  /* iphone xs max / 11 pro max */
+  @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+    @content;
+  }
+  /* iPhone 12 Pro, iPhone 12 */
+  @media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
+    @content;
+  }
+  /* iPhone 12 Pro Max */
+  @media only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
+    @content;
+  }
+  /* iPhone 12 mini */
+  @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    @content;
+  }
+}
+
+
+@function bem-root($string, $search) {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1);
+  }
+
+  @return $string;
+}
+
+@mixin nightMode($name, $color) {
+  @if ($name == 'background') {
+    background-color: $color;
+
+    @include night() {
+      background-color: calculate($color);
+    }
+  }
+
+  @if ($name == 'color') {
+    color: $color;
+
+    @include night() {
+      color: calculate($color);
+    }
+  }
+
+  @if ($name == 'caret') {
+    caret-color: $color;
+
+    @include night() {
+      caret-color: calculate($color);
+    }
+  }
+
+  @if ($name == 'stroke') {
+    stroke: $color;
+
+    @include night() {
+      stroke: calculate($color);
+    }
+  }
+
+  @if ($name == 'border') {
+    border-color: $color;
+
+    @include night() {
+      border-color: calculate($color);
+    }
+  }
+
+  @if ($name == 'border-bottom') {
+    border-bottom-color: $color;
+
+    @include night() {
+      border-bottom-color: calculate($color);
+    }
+  }
+}
+
+@mixin e-root($with: false) {
+  @if $with {
+    &#{bem-root(#{&}, '__')} {
+      @content;
+    };
+  } @else {
+    #{bem-root(#{&}, '__')} {
+      @content;
+    };
+  }
+}
+
+@mixin m-root($with: false) {
+  @if $with {
+    &#{bem-root(#{&}, '--')} {
+      @content;
+    };
+  } @else {
+    #{bem-root(#{&}, '--')} {
+      @content;
+    };
+  }
+}
+
+@mixin when($state) {
+  @at-root {
+    &#{'--' + $state} {
+      @content;
+    }
+  }
+}

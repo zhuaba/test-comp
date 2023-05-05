@@ -1,0 +1,162 @@
+.v-datetime {
+  &-calendar {
+    &__navigation {
+      position: relative;
+      margin: 15px 0;
+      padding: 0 30px;
+      width: 100%;
+
+      &--previous,
+      &--next {
+        position: absolute;
+        top: 0;
+        padding: 0 5px;
+        width: 18px;
+        cursor: pointer;
+
+        & svg {
+          width: 8px;
+          height: 13px;
+
+          & path {
+            transition: stroke 0.3s;
+          }
+        }
+      }
+
+      &--previous {
+        left: 25px;
+      }
+
+      &--next {
+        right: 25px;
+        transform: scaleX(-1);
+      }
+    }
+
+    &__current--month {
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    &__month {
+      padding: 0 20px;
+      transition: height 0.2s;
+
+      &__weekday,
+      &__day {
+        display: inline-block;
+        width: calc(100% / 7);
+        line-height: 36px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 300;
+        cursor: pointer;
+
+        & > span {
+          display: block;
+          width: 100%;
+          position: relative;
+          height: 0;
+          padding: 0 0 100%;
+          overflow: hidden;
+
+          & > span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border: 0;
+            border-radius: 50%;
+            transition: background-color 0.3s, color 0.3s;
+          }
+        }
+      }
+
+      &__weekday {
+        font-weight: bold;
+      }
+
+      &__day {
+        &--selected {
+          & > span > span {
+            @include nightMode('color', #fff);
+            @include nightMode('background', $--color-primary);
+          }
+        }
+
+        &--disabled {
+          opacity: 0.4;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  &-popup {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.18;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+    @include nightMode('color', #444);
+
+    &__header {
+      padding: 18px 30px;
+      font-size: 32px;
+      @include nightMode('color', #fff);
+      @include nightMode('background', $--color-primary);
+    }
+
+    &__year {
+      font-weight: 300;
+      font-size: 14px;
+      opacity: 0.7;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    &__date {
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    &__actions {
+      padding: 0 20px 10px 30px;
+      text-align: right;
+
+      &__button {
+        display: inline-block;
+        border: none;
+        padding: 10px 20px;
+        background: transparent;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 0.3s;
+        @include nightMode('color', $--color-primary);
+      }
+    }
+  }
+}
+
+.datetime-picker {
+  height: 352px;
+
+  .v-picker {
+    &__item {
+      font-size: 18px;
+      text-align: center;
+      transition: font-size .2s;
+
+      &.is-active {
+        font-size: 26px;
+      }
+    }
+  }
+}

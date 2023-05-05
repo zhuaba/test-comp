@@ -1,0 +1,272 @@
+.v-toggle {
+  display: inline-block;
+  position: relative;
+  cursor: default;
+  font-size: 0;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+
+  &--disabled {
+    opacity: 0.4;
+  }
+
+  &--ios {
+    width: 52px;
+    height: 32px;
+    border-radius: 16px;
+    transition: background-color 0.3s ease 0s;
+
+    @include m-root() {
+      &__background {
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        border-radius: 16px;
+        transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+      }
+    }
+
+    @include m-root(true) {
+      &--on {
+        @include nightMode('background', $--color-primary);
+
+        @include m-root() {
+          &__background {
+            transform: scale(0);
+            @include nightMode('background', $--color-primary);
+          }
+        }
+
+        @include m-root() {
+          &__core {
+            transform: translateX(20px);
+          }
+        }
+
+        @include m-root(true) {
+          &--small {
+            @include m-root() {
+              &__core {
+                transform: translateX(13px);
+              }
+            }
+          }
+        }
+
+        @include m-root(true) {
+          &--large {
+            @include m-root() {
+              &__core {
+                transform: translateX(24px);
+              }
+            }
+          }
+        }
+      }
+
+      &--off {
+        background-color: #f2f2f2;
+
+        @include m-root() {
+          &__background {
+            right: 2px;
+            bottom: 2px;
+            transform: scaleX(1);
+            @include nightMode('background', #fff);
+          }
+        }
+      }
+
+      &--loading {
+        circle {
+          @include nightMode('stroke', $--color-primary);
+        }
+      }
+
+      &--small {
+        width: 32px;
+        height: 18px;
+
+        @include m-root() {
+          &__core {
+            width: 16px;
+            height: 16px;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px, rgba(0, 0, 0, 0.1) 0 1px 1px;
+          }
+        }
+      }
+
+      &--large {
+        width: 62px;
+        height: 38px;
+        border-radius: 22px;
+        @include m-root() {
+          &__core {
+            width: 34px;
+            height: 34px;
+            border-radius: 20px;
+          }
+        }
+      }
+    }
+
+    @include m-root() {
+      &__core {
+        position: relative;
+        left: 2px;
+        display: block;
+        width: 28px;
+        height: 28px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0 3px 12px, rgba(0, 0, 0, 0.1) 0 3px 1px;
+        border-radius: 14px;
+        transition: transform 0.3s ease 0s, width 0.12s ease-in-out 80ms, left 0.11s ease-in-out 80ms, right 0.11s ease-in-out 80ms, -webkit-transform 0.3s ease 0s;
+        background-color: #fff;
+      }
+    }
+  }
+
+  &--md {
+    width: 36px;
+    height: 14px;
+    border-radius: 14px;
+    transition: background-color 0.16s ease 0s;
+
+    @include m-root(true) {
+      &--on {
+        @include dark-elem(background-color, rgba($--color-primary, 0.6));
+
+        @include m-root(true) {
+          &--loading {
+            circle {
+              @include nightMode('stroke', #fff);
+            }
+          }
+
+          &--small {
+            @include m-root () {
+              &__core {
+                transform: translateX(21px);
+              }
+            }
+          }
+
+          &--large {
+            @include m-root () {
+              &__core {
+                transform: translateX(28px);
+              }
+            }
+          }
+        }
+
+        @include m-root() {
+          &__core {
+            transform: translateX(20px);
+            @include nightMode('background', $--color-primary);
+          }
+        }
+      }
+
+      &--off {
+        @include nightMode('background', #a2a4ab);
+
+        @include m-root(true) {
+          &--loading {
+            circle {
+              @include nightMode('stroke', $--color-primary);
+            }
+          }
+        }
+
+        @include m-root() {
+          &__core {
+            background-color: #fff;
+          }
+        }
+      }
+
+      &--small {
+        width: 26px;
+        height: 10px;
+
+        @include m-root() {
+          &__core {
+            width: 14px;
+            height: 14px;
+            top: -2px;
+            left: -5px;
+          }
+        }
+      }
+
+      &--large {
+        width: 44px;
+        height: 16px;
+
+        @include m-root() {
+          &__core {
+            width: 26px;
+            height: 26px;
+            top: -5px;
+            left: -6px;
+          }
+        }
+      }
+    }
+
+    @include m-root() {
+      &__core {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: -3px;
+        width: 20px;
+        height: 20px;
+        transition-duration: 0.16s;
+        transition-property: transform, background-color, -webkit-transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform, background-color;
+        contain: strict;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.14) 0 2px 2px 0, rgba(0, 0, 0, 0.2) 0 3px 1px -2px, rgba(0, 0, 0, 0.12) 0 1px 5px 0px;
+      }
+    }
+  }
+
+  svg {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    line-height: 1;
+    animation: rolling 0.8s linear infinite;
+  }
+
+  circle {
+    animation: line-rolling 1.5s ease-in-out infinite;
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+
+  @include keyframes(line-rolling) {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -40;
+    }
+
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -120;
+    }
+  }
+}

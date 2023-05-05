@@ -1,0 +1,85 @@
+$--font-path: '../fonts' !default;
+
+$--color-primary: #FB7299 !default;
+$--color-danger: #FA5A57 !default;
+$--color-warning: #FAAB4B !default;
+$--color-success: #6DC781 !default;
+
+$--color-info: #E7E7E7 !default;
+
+$--color-text: #212121 !default;
+$--color-text-light: #505050 !default;
+$--color-text-sub: #999999 !default;
+$--color-text-extra: #C0C0C0 !default;
+$--color-text-disable:#C9CCD0 !default;
+
+$--color-gray-line: #E7E7E7 !default;
+$--color-gray-border: #C0C0C0 !default;
+
+$--color-bg-000: #FFFFFF !default;
+$--color-bg-gray: #F4F4F4 !default;
+
+$--color-icon-light: #999999 !default;
+
+$--color-primary-light: #FF9DB5 !default;
+
+$--android-navbar-safe-size: 40px;
+
+$--z-index-basic: 1000 !default;
+
+
+/* Button */
+
+$--button-primary-background-color: $--color-primary !default;
+$--button-primary-text-color: #fff !default;
+$--button-primary-plain-text-color: $--color-primary !default;
+$--button-primary-plain-border-color: $--color-primary !default;
+
+$--button-warning-background-color: $--color-warning !default;
+$--button-warning-text-color: #fff !default;
+$--button-warning-plain-text-color: $--color-warning !default;
+$--button-warning-plain-border-color: $--color-warning !default;
+
+$--button-success-background-color: $--color-success !default;
+$--button-success-text-color: #fff !default;
+$--button-success-plain-text-color: $--color-success !default;
+$--button-success-plain-border-color: $--color-success !default;
+
+$--button-danger-background-color: $--color-danger !default;
+$--button-danger-text-color: #fff !default;
+$--button-danger-plain-text-color: $--color-danger !default;
+$--button-danger-plain-border-color: $--color-danger !default;
+
+$--button-info-background-color: $--color-info !default;
+$--button-info-text-color: #999999 !default;
+$--button-info-plain-text-color: #999999 !default;
+$--button-info-plain-border-color: #C0C0C0 !default;
+
+$--button-small-padding-vertical: 2px;
+$--button-small-padding-horizontal: 12px;
+$--button-small-font-size: 13px;
+$--button-small-height: 24px;
+
+$--button-medium-padding-vertical: 4px;
+$--button-medium-padding-horizontal: 11px;
+$--button-medium-font-size: 14px;
+$--button-medium-height: 30px;
+
+$--button-large-padding-vertical: 10px;
+$--button-large-padding-horizontal: 38px;
+$--button-large-font-size: 16px;
+$--button-large-height: 44px;
+
+/* Field */
+$--field-height: 44px;
+$--field-padding: 12px;
+
+/* z-index */
+
+$--z-index-nav: $--z-index-basic;
+$--z-index-affix: $--z-index-basic + 1;
+$--z-index-overlay: $--z-index-basic + 2;
+$--z-index-drawer: $--z-index-basic + 3;
+$--z-index-dialog: $--z-index-basic + 4;
+$--z-index-alert: $--z-index-basic + 5;
+$--z-index-toast: $--z-index-basic + 6;

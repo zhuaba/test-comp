@@ -1,0 +1,112 @@
+$range-dot-size: 28px;
+$range-line-size: 2px;
+
+.v-range {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+
+  &.is-disabled {
+    opacity: 0.4;
+  }
+
+  &--hoz {
+    height: $range-dot-size;
+
+    @include m-root() {
+      &__subway {
+        height: $range-line-size;
+        width: 100%;
+      }
+
+      &__over {
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+
+      &__dot {
+        margin-left: -$range-dot-size / 2;
+      }
+    }
+  }
+
+  &--ver {
+    width: $range-dot-size;
+
+    @include m-root() {
+      &__subway {
+        height: 200px;
+        width: $range-line-size;
+      }
+
+      &__over {
+        transform-origin: center bottom;
+        transform: scaleY(0);
+      }
+
+      &__dot {
+        margin-bottom: -$range-dot-size / 2;
+      }
+    }
+  }
+
+  &__subway {
+    position: relative;
+    border-radius: $range-line-size;
+    overflow: hidden;
+    @include nightMode('background', $--color-bg-gray);
+  }
+
+  &__over {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    @include nightMode('background', $--color-primary);
+  }
+
+  &__dot {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: $range-dot-size;
+    height: $range-dot-size;
+    line-height: $range-dot-size;
+    text-align: center;
+    background-color: transparent;
+  }
+
+  &__tip {
+    font-size: 12px;
+    // color: $--color-text-light;
+    @include dark-elem(color, $--color-text-light);
+    transform: scale(1) translateY(-$range-dot-size);
+  }
+
+  &__core {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 3px 1px 0, rgba(0, 0, 0, 0.13) 0 4px 8px 0, rgba(0, 0, 0, 0.02) 0 0 0 1px;
+    @include nightMode('background', $--color-bg-gray);
+    @include night() {
+      box-shadow: rgba(79, 46, 53, 0.1) 0 3px 1px 0, rgba(79, 46, 53, 0.13) 0 4px 8px 0, rgba(79, 46, 53, 0.02) 0 0 0 1px;;
+    }
+  }
+
+  &__popup-enter-active,
+  &__popup-leave-active {
+    transition: transform .12s ease;
+  }
+
+  &__popup-enter,
+  &__popup-leave-to {
+    transform: scale(0) translateY(0px);
+  }
+}

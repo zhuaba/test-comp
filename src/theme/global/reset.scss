@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue',Tahoma,Arial,PingFangSC-Regular,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+}
+
+a {
+  color: inherit;
+  cursor: default;
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  cursor: default;
+  user-select: none;
+}
+
+div[contenteditable=true],
+input:not([type='radio']):not([type='checkbox']):not([type='range']),
+select,
+textarea {
+  -webkit-appearance: none;
+  user-select: auto !important;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type='search'] {
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}

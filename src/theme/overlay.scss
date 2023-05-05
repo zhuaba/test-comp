@@ -1,0 +1,26 @@
+.v-overlay {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  z-index: $--z-index-overlay;
+  pointer-events: auto;
+
+  &--md {
+    background-color: rgba(0, 0, 0, 0.32);
+    transition: opacity 0.15s ease-in-out;
+    will-change: opacity;
+  }
+
+  &--ios {
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: opacity 0.2s ease-in-out;
+    will-change: opacity;
+  }
+
+  &--show {
+    opacity: 1;
+  }
+}

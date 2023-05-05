@@ -1,0 +1,194 @@
+$uploader-item-size: 80px;
+$uploader-item-margin: 8px;
+$uploader-item-radius: 4px;
+
+.v-uploader {
+  font-size: 0;
+  user-select: none;
+
+  &--custom {
+    font-size: inherit;
+  }
+
+  &__action {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+
+    input[type='file'] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+
+    &__wrap {
+      pointer-events: none;
+      display: inline;
+    }
+  }
+
+  &__btn {
+    position: relative;
+    display: block;
+    width: $uploader-item-size;
+    height: $uploader-item-size;
+    border: 1px dashed;
+    border-radius: $uploader-item-radius;
+    @include nightMode('background', #fff);
+    @include nightMode('border', #e5e5e5);
+
+    .ic_add {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      @include nightMode('color', #969799);
+    }
+  }
+
+  &__files {
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  &__files + &__action {
+    margin: 0 $uploader-item-margin $uploader-item-margin 0;
+  }
+
+  &__item {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: $uploader-item-size;
+    height: $uploader-item-size;
+    margin: 0 $uploader-item-margin $uploader-item-margin 0;
+    @include nightMode('background', $--color-bg-gray);
+
+    &__poster {
+      display: block;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    &__cancel {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      display: block;
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+      line-height: 18px;
+      text-align: center;
+      border-radius: 50%;
+      z-index: 1;
+      @include nightMode('color', #969799);
+      @include nightMode('background', #fff);
+    }
+
+    &__mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(#000, 0.5);
+      border-radius: $uploader-item-radius;
+
+      span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+        width: 100%;
+      }
+    }
+
+    &__loading {
+      div {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        animation: skr 1.5s infinite linear;
+        border: 2px solid #fff;
+        box-shadow: 0 0 5px #fff;
+      }
+
+      @include keyframes(skr) {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    }
+
+    &__status {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: $uploader-item-size / 2;
+      height: $uploader-item-size / 2;
+      border-radius: $uploader-item-radius;
+      overflow: hidden;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: $uploader-item-size / 4;
+        top: $uploader-item-size / 4;
+        width: 100%;
+        height: 100%;
+        transform: rotate(45deg);
+      }
+
+      &.is-success:before {
+        @include nightMode('background', $--color-success);
+      }
+
+      &.is-error:before {
+        @include nightMode('background', $--color-danger);
+      }
+
+      .bili-font {
+        position: absolute;
+        display: block;
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+        right: 2px;
+        bottom: 2px;
+        color: #fff;
+        text-align: center;
+      }
+    }
+  }
+
+  &--single {
+    @include m-root() {
+      &__action,
+      &__item {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

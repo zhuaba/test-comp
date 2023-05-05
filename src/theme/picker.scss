@@ -1,0 +1,91 @@
+.v-picker {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+
+  &__column {
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &:not(:last-child) {
+      @include e-root() {
+        &__list {
+          &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            transform: scaleX(0.5);
+            @include nightMode('background', $--color-gray-line);
+          }
+        }
+      }
+    }
+  }
+
+  &__list {
+    position: relative;
+  }
+
+  &__item {
+    height: 44px;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 20px;
+    @extend %oneline;
+    @include nightMode('color', $--color-text-light);
+
+    &.is-active {
+      @include nightMode('color', $--color-primary);
+    }
+
+    &.is-disabled {
+      @include nightMode('color', $--color-text-sub);
+    }
+  }
+
+  &__drawer {
+    .v-drawer__body {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__header {
+    width: 100%;
+    flex-shrink: 0;
+    height: 44px;
+    font-size: 14px;
+    line-height: 44px;
+
+    .cancel-btn {
+      float: left;
+      @include nightMode('color', $--color-text-sub);
+    }
+
+    .submit-btn {
+      float: right;
+      @include nightMode('color', $--color-primary);
+    }
+
+    &__title {
+      overflow: hidden;
+      text-align: center;
+      padding: 0 12px;
+      @extend %oneline;
+    }
+  }
+
+  &__wrap {
+    height: 100%;
+    overflow: hidden;
+  }
+}

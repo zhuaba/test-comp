@@ -1,0 +1,130 @@
+.v-check-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &--circle {
+    @include m-root() {
+      &__label {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &--normal {
+    @include m-root() {
+      &__label {
+        width: 22px;
+        height: 22px;
+        margin-right: 12px;
+        margin-left: 12px;
+
+        &:after {
+          left: 7px;
+          top: 3px;
+          height: 9px;
+          width: 4px;
+          border-width: 2px;
+        }
+      }
+
+      &__text {
+        line-height: 22px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &--small {
+    @include m-root() {
+      &__label {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        margin-left: 8px;
+
+        &:after {
+          left: 5px;
+          top: 2px;
+          height: 7px;
+          width: 3px;
+          border-width: 1px;
+        }
+      }
+
+      &__text {
+        line-height: 16px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &--inline {
+    display: inline-flex;
+    margin-right: 20px;
+  }
+
+  &__label {
+    flex-shrink: 0;
+    position: relative;
+    border-radius: 3px;
+    border: 1px solid;
+    @include nightMode('background', #fff);
+    @include nightMode('border', $--color-gray-line);
+
+    &:after {
+      content: '';
+      position: absolute;
+      box-sizing: content-box;
+      border-style: solid;
+      border-left: 0;
+      border-top: 0;
+      transform: rotate(45deg) scaleY(0);
+      transition: transform .15s ease-in .05s;
+      transform-origin: center;
+      @include nightMode('border', #fff);
+    }
+
+    &.is-selected {
+      @include nightMode('background', $--color-primary);
+      @include nightMode('border', $--color-primary);
+
+      &:after {
+        transform: rotate(45deg) scaleY(1);
+      }
+
+      &.is-disabled {
+        @include nightMode('background', $--color-text-sub);
+        @include nightMode('border', $--color-text-sub);
+      }
+    }
+
+    &.is-disabled {
+      @include nightMode('background', $--color-bg-gray);
+    }
+  }
+
+  &__text {
+    flex: 1;
+    text-align: left;
+    @include nightMode('color', $--color-text)
+  }
+
+  &--left {
+    @include m-root() {
+      &__label {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &--right {
+    flex-direction: row-reverse;
+
+    @include m-root() {
+      &__label {
+        margin-right: 0;
+      }
+    }
+  }
+}

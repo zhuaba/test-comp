@@ -1,0 +1,214 @@
+$v-step-icon-size: 28px;
+$v-step-line-size: 4px;
+
+.v-step {
+  display: flex;
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex: 1;
+
+    &:before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+    }
+
+    &:last-child {
+      &:before {
+        content: '';
+      }
+    }
+
+    &:first-child {
+      &:before {
+        content: none;
+      }
+    }
+
+    &__icon {
+      position: relative;
+      width: $v-step-icon-size;
+      height: $v-step-icon-size;
+      text-align: center;
+      user-select: none;
+      border-radius: 50%;
+
+      span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        font-size: 13px;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &__text {
+      font-size: 12px;
+      line-height: 17px;
+    }
+
+    &--active {
+      &:before {
+        @include nightMode('background', $--color-primary-light);
+      }
+
+      @include m-root() {
+        &__icon {
+          color: #FFFFFF;
+          @include nightMode('background', $--color-primary-light);
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            border-radius: 50%;
+            z-index: 0;
+            @include nightMode('background', $--color-primary);
+          }
+        }
+
+        &__text {
+          @include nightMode('color', $--color-primary);
+        }
+      }
+    }
+
+    &--before {
+      &:before {
+        @include nightMode('background', $--color-primary-light);
+      }
+
+      @include m-root() {
+        &__icon {
+          color: #FFFFFF;
+          @include nightMode('background', $--color-primary-light);
+        }
+
+        &__text {
+          @include nightMode('color', $--color-text-sub);
+        }
+      }
+    }
+
+    &--after {
+      &:before {
+        @include nightMode('background', $--color-bg-gray);
+      }
+
+      @include m-root() {
+        &__icon {
+          @include nightMode('color', $--color-icon-light);
+          @include nightMode('background', $--color-bg-gray);
+        }
+
+        &__text {
+          @include nightMode('color', $--color-text);
+        }
+      }
+    }
+  }
+
+  &--horizontal {
+    justify-content: space-between;
+    align-items: center;
+
+    @include m-root(true) {
+      &--desc {
+        flex-direction: row-reverse;
+
+        @include m-root() {
+          &__item:before {
+            left: 50%;
+          }
+        }
+      }
+
+      &--asc {
+        flex-direction: row;
+
+        @include m-root() {
+          &__item:before {
+            left: -50%;
+          }
+        }
+      }
+    }
+
+    @include m-root() {
+      &__item {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &:before {
+          top: ($v-step-icon-size - $v-step-line-size) / 2;
+          width: 100%;
+          height: $v-step-line-size;
+        }
+
+        &__icon {
+          margin-bottom: 4px;
+        }
+      }
+    }
+  }
+
+  &--vertical {
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    @include m-root(true) {
+      &--desc {
+        flex-direction: column-reverse;
+
+        @include m-root() {
+          &__item:before {
+            top: 0;
+          }
+        }
+      }
+
+      &--asc {
+        flex-direction: column;
+
+        @include m-root() {
+          &__item:before {
+            bottom: 100%;
+          }
+        }
+      }
+    }
+
+    @include m-root() {
+      &__item {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        min-height: 80px;
+        width: 100%;
+
+        &:before {
+          left: ($v-step-icon-size - $v-step-line-size) / 2;
+          height: 100%;
+          width: $v-step-line-size;
+        }
+
+        &__icon {
+          margin-right: 4px;
+          flex-shrink: 0;
+        }
+
+        &__text {
+          margin-top: 7px;
+          flex: 1;
+        }
+      }
+    }
+  }
+}

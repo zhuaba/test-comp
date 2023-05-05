@@ -1,0 +1,6 @@
+.v-affix {
+  &--fixed {
+    position: fixed;
+    z-index: $--z-index-affix;
+  }
+}

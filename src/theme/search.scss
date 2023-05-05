@@ -1,0 +1,131 @@
+$search-height: 44px;
+$search-padding-top: 7px;
+
+.v-search {
+  position: relative;
+  user-select: none;
+
+  &__shim,
+  &__body {
+    height: $search-height;
+  }
+
+  &__body {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: $--z-index-nav;
+    @include nightMode('background', #fff);
+  }
+
+  &--nav {
+    @include m-root() {
+      &__shim,
+      &__body {
+        box-sizing: content-box;
+        padding-top: $--android-navbar-safe-size;
+
+        @include iPhoneX() {
+          padding-top: constant(safe-area-inset-top);
+          padding-top: env(safe-area-inset-top);
+        }
+      }
+    }
+  }
+
+  &--border {
+    @include m-root() {
+      &__body {
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          height: 1px;
+          transform: scaleY(0.5);
+          @include nightMode('background', $--color-gray-line);
+        }
+      }
+    }
+  }
+
+  &--fixed {
+    @include m-root() {
+      &__body {
+        position: fixed;
+      }
+    }
+  }
+
+  &__wrap {
+    height: 100%;
+    width: 100%;
+    padding: $search-padding-top 12px;
+  }
+
+  &__cancel {
+    float: right;
+    font-size: 16px;
+    line-height: $search-height - $search-padding-top * 2;
+    margin-left: 16px;
+    margin-right: 4px;
+    @include nightMode('color', $--color-primary);
+  }
+
+  &__box {
+    overflow: hidden;
+    height: 100%;
+    border-radius: ($search-height - $search-padding-top * 2) / 2;
+    @include nightMode('background', $--color-bg-gray);
+  }
+
+  &__icon {
+    width: $search-height - $search-padding-top * 2;
+    height: $search-height - $search-padding-top * 2;
+    line-height: $search-height - $search-padding-top * 2;
+    text-align: center;
+    font-size: 16px;
+    @include nightMode('color', $--color-text-sub);
+
+    &--query {
+      float: left;
+    }
+
+    &--close {
+      float: right;
+    }
+
+    &--query,
+    &--close {
+      i {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__form {
+    height: 100%;
+    overflow: hidden;
+    padding: 6px 0;
+
+    input {
+      @extend %form-item-reset;
+      display: block;
+      width: 100%;
+      height: 100%;
+      line-height: $search-height - $search-padding-top * 2 - 12;
+      font-size: 13px;
+      background-color: transparent;
+      @include nightMode('color', $--color-text);
+      @include nightMode('caret', $--color-primary);
+
+      &::placeholder {
+        @include nightMode('color', $--color-text-extra);
+      }
+    }
+  }
+}

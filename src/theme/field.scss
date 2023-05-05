@@ -1,0 +1,175 @@
+.v-field {
+  min-height: $--field-height;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  @include nightMode('background', $--color-bg-000);
+
+  &__before {
+    &--line {
+      padding-right: $--field-padding;
+
+      &:before {
+        right: 0;
+      }
+    }
+
+    &--has {
+      padding-left: $--field-padding;
+    }
+  }
+
+  &__after {
+    &--line {
+      padding-left: $--field-padding;
+
+      &:before {
+        left: 0;
+      }
+    }
+
+    &--has {
+      padding-right: $--field-padding;
+    }
+  }
+
+  &__before,
+  &__after {
+    font-size: 14px;
+    height: 100%;
+    line-height: $--field-height;
+    flex-shrink: 0;
+    @include nightMode('color', $--color-text);
+
+    &--line {
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: ($--field-height - 26) / 2;
+        width: 1px;
+        height: 26px;
+        transform: scaleX(0.5);
+        @include nightMode('background', $--color-gray-line);
+      }
+    }
+  }
+
+  &__main {
+    flex: 1;
+    height: 100%;
+    padding-left: $--field-padding;
+
+    @include e-root() {
+      &__main {
+        padding-left: 0;
+      }
+    }
+  }
+
+  &__cancel {
+    float: right;
+    height: 100%;
+
+    i {
+      display: block;
+      height: 100%;
+      line-height: $--field-height;
+      margin-left: $--field-padding;
+      margin-right: $--field-padding;
+      font-size: 16px;
+      @include nightMode('color', $--color-text-sub);
+    }
+  }
+
+  &__input {
+    overflow: hidden;
+    height: 100%;
+
+    input,
+    textarea {
+      @extend %form-item-reset;
+      display: block;
+      width: 100%;
+      line-height: $--field-height - $--field-padding * 2;
+      font-size: 14px;
+      font-family: system-ui;
+      border-radius: 0;
+      background-color: transparent;
+      @include nightMode('color', $--color-text);
+      @include nightMode('caret', $--color-primary);
+
+      &::placeholder {
+        @include nightMode('color', $--color-text-extra);
+      }
+    }
+
+    input {
+      padding: $--field-padding $--field-padding $--field-padding 0;
+      height: $--field-height;
+    }
+
+    textarea {
+      resize: none;
+      min-height: $--field-height;
+      padding-right: $--field-padding;
+    }
+
+    &--close input {
+      padding-right: 0;
+    }
+
+    &--error input,
+    &--error textarea {
+      @include nightMode('color', $--color-danger);
+    }
+  }
+
+  &__textarea {
+    padding: $--field-padding 0;
+
+    &--auto {
+      position: relative;
+
+      pre {
+        width: 100%;
+        height: 100%;
+        padding: 0 $--field-padding;
+        line-height: $--field-height - $--field-padding * 2;
+        min-height: $--field-height - $--field-padding * 2;
+        opacity: 0;
+        word-break: break-all;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        letter-spacing: normal;
+        word-spacing: normal;
+        pointer-events: none;
+        font-size: 14px;
+        font-family: system-ui;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+      }
+
+      textarea {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+
+  &__counter {
+    text-align: right;
+    padding-right: $--field-padding;
+    font-size: 13px;
+    line-height: 13px;
+    margin-top: 4px;
+    margin-bottom: 4 - $--field-padding;
+    @include nightMode('color', $--color-text-sub);
+  }
+}

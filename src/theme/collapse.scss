@@ -1,0 +1,53 @@
+.v-collapse {
+  transform: translateZ(0);
+
+  &__header {
+    position: relative;
+    *zoom: 1;
+    user-select: none;
+    @extend %active-color;
+    height: 44px;
+    line-height: 24px;
+    padding: 10px 16px;
+    font-size: 14px;
+    box-sizing: border-box;
+    @include nightMode('color', $--color-text);
+
+    &--disabled {
+      @include nightMode('color', rgba($--color-text, 0.4));
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+      overflow: hidden;
+    }
+  }
+
+  &__item {
+    &:not(:last-child) {
+      border-bottom: 1px solid;
+      @include nightMode('border-bottom', $--color-gray-line)
+    }
+  }
+
+  &__arrow {
+    float: right;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    transition: transform 300ms;
+
+    &--expanded {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__title {
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,143 @@
+.v-radio {
+  &--circle {
+    @include m-root() {
+      &__label {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &--normal {
+    @include m-root() {
+      &__label {
+        width: 22px;
+        height: 22px;
+        margin-right: 12px;
+
+        &:after {
+          left: 7px;
+          top: 3px;
+          height: 9px;
+          width: 4px;
+          border-width: 2px;
+        }
+      }
+
+      &__text {
+        line-height: 22px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &--small {
+    @include m-root() {
+      &__label {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+
+        &:after {
+          left: 5px;
+          top: 2px;
+          height: 7px;
+          width: 3px;
+          border-width: 1px;
+        }
+      }
+
+      &__text {
+        line-height: 16px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &--ver {
+    @include m-root(true) {
+      &--normal {
+        @include m-root() {
+          &__item:not(:last-child) {
+            margin-bottom: 12px;
+          }
+        }
+      }
+
+      &--small {
+        @include m-root() {
+          &__item:not(:last-child) {
+            margin-bottom: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  &--hoz {
+    @include m-root() {
+      &__item {
+        display: inline-block;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  &__item {
+    &.is-selected {
+      @include e-root() {
+        &__label {
+          @include nightMode('background', $--color-primary);
+          @include nightMode('border', $--color-primary);
+
+          &:after {
+            transform: rotate(45deg) scaleY(1);
+          }
+        }
+      }
+
+      &.is-disabled {
+        @include e-root() {
+          &__label {
+            @include nightMode('background', $--color-text-sub);
+            @include nightMode('border', $--color-text-sub);
+          }
+        }
+      }
+    }
+
+    &.is-disabled {
+      @include e-root() {
+        &__label {
+          @include nightMode('background', $--color-bg-gray);
+        }
+      }
+    }
+  }
+
+  &__label {
+    float: left;
+    position: relative;
+    border-radius: 3px;
+    border: 1px solid;
+    @include nightMode('background', #fff);
+    @include nightMode('border', $--color-gray-line);
+
+    &:after {
+      content: '';
+      position: absolute;
+      box-sizing: content-box;
+      border-style: solid;
+      border-left: 0;
+      border-top: 0;
+      transform: rotate(45deg) scaleY(0);
+      transition: transform .15s ease-in .05s;
+      transform-origin: center;
+      @include nightMode('border', #fff);
+    }
+  }
+
+  &__text {
+    overflow: hidden;
+    @include nightMode('color', $--color-text)
+  }
+}

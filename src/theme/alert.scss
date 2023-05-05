@@ -1,0 +1,249 @@
+.v-alert {
+  position: relative;
+  touch-action: none;
+  user-select: none;
+  z-index: $--z-index-alert;
+
+  &__wrap {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: $--z-index-alert;
+  }
+
+  &--ios {
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', sans-serif;
+
+    @include m-root() {
+      &__box {
+        width: 270px;
+        border-radius: 13px;
+        transform-origin: center;
+        @include nightMode('background', #f9f9f9);
+      }
+
+      &__title {
+        padding: 12px 16px 7px;
+        @extend %oneline;
+
+        p {
+          text-align: center;
+          font-size: 17px;
+          font-weight: 600;
+          margin-top: 8px;
+          margin-bottom: 0;
+          line-height: 1.2;
+          @include nightMode('color', #000);
+        }
+      }
+
+      &__message {
+        text-align: center;
+        padding: 0 16px 21px;
+        font-size: 13px;
+        line-height: 16px;
+        @include nightMode('color', #000);
+      }
+
+      &__input {
+        padding: 0 16px 21px;
+
+        input {
+          @extend %form-item-reset;
+          height: 32px;
+          width: 100%;
+          margin: 0;
+          padding: 0 5px;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          border-radius: 4px;
+          font-size: 14px;
+          box-sizing: border-box;
+          @include nightMode('color', $--color-text);
+          @include nightMode('caret', $--color-primary);
+          @include nightMode('background', #fff);
+        }
+      }
+
+      &__buttons {
+        position: relative;
+        height: 44px;
+        border-radius: 0 0 13px 13px;
+        overflow: hidden;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 1px;
+          background-color: rgba(0, 0, 0, 0.2);
+          transform: scaleY(0.5);
+          @include night() {
+            background-color: $--color-text-light;
+          }
+        }
+
+        div {
+          position: relative;
+          float: left;
+          height: 44px;
+          line-height: 44px;
+          text-align: center;
+          font-size: 17px;
+          vertical-align: top;
+          @extend %active-color;
+          @include nightMode('color', $--color-primary);
+
+          &:not(:first-child) {
+            &:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 1px;
+              height: 100%;
+              background-color: rgba(0, 0, 0, 0.2);
+              transform: scaleX(0.5);
+              @include night() {
+                background-color: $--color-text-light;
+              }
+            }
+          }
+
+          &:last-child {
+            font-weight: 700;
+          }
+        }
+      }
+
+      &--vertical {
+        @include m-root() {
+          &__buttons {
+            height: auto;
+
+            div {
+              width: 100% !important;
+
+              &:last-child {
+                font-weight: 400;
+              }
+
+              &:not(:first-child) {
+                &:before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  height: 1px;
+                  width: 100%;
+                  background-color: rgba(0, 0, 0, 0.2);
+                  transform: scaleY(0.5);
+                  @include night() {
+                    background-color: $--color-text-light;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--md {
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+
+    @include m-root() {
+      &__box {
+        width: 280px;
+        border-radius: 4px;
+        transform-origin: center;
+        box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+        @include nightMode('background', $--color-bg-000);
+      }
+
+      &__title {
+        padding: 20px 23px 15px;
+        @extend %oneline;
+
+        p {
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: 500;
+          margin-bottom: 0;
+          margin-top: 0;
+          @include nightMode('color', #000);
+        }
+      }
+
+      &__message {
+        padding: 0 24px 20px;
+        font-size: 16px;
+        line-height: 18px;
+        @include nightMode('color', #737373);
+      }
+
+      &__input {
+        padding: 0 24px;
+
+        input {
+          @extend %form-item-reset;
+          height: 36px;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          border: none;
+          border-bottom: 1px solid;
+          transition: border-bottom-color 200ms;
+          font-size: 14px;
+          @include nightMode('color', $--color-text);
+          @include nightMode('caret', $--color-primary);
+          @include nightMode('background', #fff);
+          @include nightMode('border-bottom', #737373);
+
+          &:focus {
+            @include nightMode('border-bottom', $--color-primary);
+          }
+        }
+      }
+
+      &__buttons {
+        overflow: hidden;
+        height: 56px;
+        border-radius: 0 0 4px 4px;
+        padding: 8px;
+        text-align: right;
+        box-sizing: border-box;
+
+        div {
+          display: inline-block;
+          height: 40px;
+          line-height: 20px;
+          padding: 10px;
+          margin-right: 8px;
+          text-align: center;
+          font-size: 14px;
+          width: auto !important;
+          box-sizing: border-box;
+          vertical-align: top;
+          @include nightMode('color', $--color-primary);
+        }
+      }
+
+      &--vertical {
+        @include m-root() {
+          &__buttons {
+            height: auto;
+
+            div {
+              width: 100% !important;
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+.v-transition {
+  &--collapse {
+    transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
+  }
+
+  &--ios {
+    &-enter {
+      opacity: 0;
+      transform: scale(1.1);
+      will-change: opacity, transform;
+    }
+    &-leave-to {
+      opacity: 0;
+      transform: scale(0.9);
+      will-change: opacity, transform;
+    }
+    &-enter-active,
+    &-leave-active {
+      transition: 0.2s ease-in-out;
+      will-change: opacity, transform;
+    }
+  }
+
+  &--md {
+    &-enter {
+      opacity: 0;
+      transform: scale(0.9);
+      will-change: opacity, transform;
+    }
+    &-leave-to {
+      opacity: 0;
+      will-change: opacity;
+    }
+    &-enter-active,
+    &-leave-active {
+      transition: 0.15s ease-in-out;
+      will-change: opacity, transform;
+    }
+  }
+
+  &--popup {
+    &-enter,
+    &-leave-to {
+      opacity: 0
+    }
+
+    &-enter-active,
+    &-level-active {
+      transition: opacity .3s;
+    }
+
+    &-enter-active {
+      > * {
+        animation: popup-enter .3s;
+      }
+    }
+
+    &-level-active {
+      > * {
+        animation: popup-leave .3s;
+      }
+    }
+  }
+
+  &--scale {
+    &-enter {
+      opacity: 0;
+      transform: scale(0);
+      will-change: opacity, transform;
+    }
+
+    &-leave-to {
+      opacity: 0;
+      transform: scale(1);
+      will-change: opacity, transform;
+    }
+
+    &-enter-active,
+    &-leave-active {
+      transition: 0.2s cubic-bezier(0.17, 0.89, 0.08, 1.18);
+      will-change: opacity, transform;
+    }
+  }
+}

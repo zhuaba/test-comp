@@ -1,0 +1,64 @@
+.v-form {
+  .v-field {
+    flex-wrap: wrap;
+
+    &__before {
+      width: 100%;
+    }
+
+    &__main {
+      padding-right: $--field-padding;
+
+      .v-field__after {
+        padding-right: 0;
+      }
+    }
+  }
+
+  &.is-loading {
+    input,
+    textarea {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  &.is-full {
+    padding-top: $--field-padding;
+    padding-bottom: constant(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-top);
+  }
+
+  &__errors,
+  &__submit {
+    padding-left: $--field-padding;
+    padding-right: $--field-padding;
+    margin-top: $--field-padding;
+  }
+
+  &__errors {
+    @include nightMode('color', $--color-danger);
+  }
+
+  &__submit {
+    padding-bottom: $--field-padding;
+  }
+
+  input,
+  textarea {
+    border-bottom: 1px solid !important;
+    border-color: $--color-gray-line !important;
+
+    @include night() {
+      border-color: calculate($--color-gray-line) !important;
+    }
+
+    &:focus {
+      border-color: $--color-primary !important;
+
+      @include night() {
+        border-color: calculate($--color-primary) !important;
+      }
+    }
+  }
+}
