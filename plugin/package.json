@@ -1,0 +1,65 @@
+{
+  "_args": [
+    [
+      "@bilibili/gsr-webpack-plugin@3.1.11",
+      "/Users/zhupeng/workspace/jinkela-h5"
+    ]
+  ],
+  "_from": "@bilibili/gsr-webpack-plugin@3.1.11",
+  "_id": "@bilibili/gsr-webpack-plugin@3.1.11",
+  "_inBundle": false,
+  "_integrity": "sha1-TsWNeYA9b2AWLIV4xqR8/ILbrHY=",
+  "_location": "/@bilibili/gsr-webpack-plugin",
+  "_phantomChildren": {
+    "source-list-map": "2.0.1"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@bilibili/gsr-webpack-plugin@3.1.11",
+    "name": "@bilibili/gsr-webpack-plugin",
+    "escapedName": "@bilibili%2fgsr-webpack-plugin",
+    "scope": "@bilibili",
+    "rawSpec": "3.1.11",
+    "saveSpec": null,
+    "fetchSpec": "3.1.11"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "http://registry.npm.bilibili.co/@bilibili/gsr-webpack-plugin/download/@bilibili/gsr-webpack-plugin-3.1.11.tgz",
+  "_spec": "3.1.11",
+  "_where": "/Users/zhupeng/workspace/jinkela-h5",
+  "author": "",
+  "dependencies": {
+    "@bilibili/config-sdk": "^1.2.18",
+    "axios": "^0.21.1",
+    "jszip": "^3.6.0",
+    "querystring": "^0.2.1",
+    "webpack-manifest-plugin": "^3.1.1",
+    "webpack-sources": "^2.2.0"
+  },
+  "description": "gsr webpack plugin",
+  "devDependencies": {
+    "@bilibili/eslint-config-recommend": "^1.0.6",
+    "eslint": "^7.31.0",
+    "eslint-plugin-only-warn": "^1.0.3"
+  },
+  "files": [
+    "README.md",
+    "lib/**/*",
+    "index.js"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "@bilibili/gsr-webpack-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git@git.bilibili.co:jinkela/gsr-webpack-plugin.git"
+  },
+  "scripts": {
+    "lint": "eslint --fix . --ext .js",
+    "test": "echo \"Error: no test specified\""
+  },
+  "version": "3.1.11"
+}
